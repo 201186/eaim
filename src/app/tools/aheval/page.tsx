@@ -4,13 +4,10 @@ import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
-
-
 const PX_PER_MM = 96 / 25.4;
 const A4_WIDTH_PX = Math.round(210 * PX_PER_MM);
 const A4_HEIGHT_PX = Math.round(297 * PX_PER_MM);
 
-// local fallback generator (keeps existing templates)
 function generateGujaratiReport(params: {
   name: string;
   school: string;
@@ -22,60 +19,60 @@ function generateGujaratiReport(params: {
   const key = (eventName || "").toLowerCase().trim();
 
   if (key.includes("sixandin") || key.includes("શિક્ષણ") || key.includes("teachers")) {
-    return `શિક્ષણ આપણું જીવંત મોર્ચું છે અને શિક્ષકો તેમનું અજોડ યોગદાન આપતા હોય છે. અમારી શાળા ${date} ના રોજ ${eventName} ખૂબ જ ઉલ્લાસપૂર્વક ઉજવાઈ હતી. આયોજનનો મુખ્ય ઉદ્દેશ વિદ્યાર્થીઓમાં શિક્ષણના મૂલ્યો, શિસ્ત અને નિષ્ઠાનું સંગઠન પ્રેરિત કરવો હતો. કાર્યક્રમની શરૂઆત પ્રાર્થનાથી રહી અને ત્યારબાદ શિક્ષકોને સન્માન આપવામાં આવ્યું. વિવિધ કક્ષાએ નાટક, કાવ્યપઠ, ભાષણ સ્પર્ધા અને સંગીત દ્વારા વિદ્યાર્થીઓએ તેમના પ્રતિભાનું પ્રદર્શન કર્યું. 'વિદ્યાર્થી-શિક્ષક ગણપત્ર' તરીકે વિદ્યાર્થીઓએ એક દિવસ માટે શિક્ષકની ભૂમિકા ભજવી અને પરિચય આપ્યો, જેનાથી બાળકોને શિક્ષણકાર્યની જવાબદારીનું અનુભવન થયું. ${name ? `${name}એ` : "વિદ્યાર્થીોએ"} ઉત્સાહપૂર્વક ભાગ લઈને કાર્યક્રમને સફળ બનાવવામાં સહયોગ આપ્યો. શિક્ષકમંડળ અને પ્રિન્સિપાલે અભિનંદન પાઠવતા પાલન અને મહેનતની પ્રશંસા કરી. આ ઉજવણી દ્વારા શાળા સમુદાયમાં ઔદાર્ય અને જ્ઞાનની ભાવના વધતી રહેતી દેખાઇ છે.`;
+    return `શિક્ષણ આપણું જીવંત મોર્ચું છે અને શિક્ષકો તેમાનું અજોડ યોગદાન આપે છે. અમારી શાળા ${date} ના રોજ ${eventName} ખૂબ જ ઉલ્લાસપૂર્વક ઉજવાઈ હતી. આયોજનનો મુખ્ય ઉદ્દેશ વિદ્યાર્થીઓમાં શિક્ષણના મૂલ્યો, શિસ્ત અને નિષ્ઠા પ્રોત્સાહિત કરવાનું હતું. કાર્યક્રમની શરૂઆત પ્રાર્થનાથી થઇ અને ત્યારબાદ શિક્ષકોને સન્માન આપવામાં આવ્યું. વિવિધ કક્ષાએ નાટક, કાવ્યપઠ, ભાષણ સ્પર્ધા અને સંગીત દ્વારા વિદ્યાર્થીઓએ તેમની પ્રતિભા રજૂ કરી. ${name ? `${name}એ` : "વિદ્યાર્થીોએ"} ઉત્સાહપૂર્વક ભાગ લઈને કાર્યક્રમને સફળ બનાવવામાં સહયોગ આપ્યો. શિક્ષકમંડળ અને પ્રિન્સિપાલે અભિનંદન પાઠવતા પ્રયત્નો અને મહેનતની પ્રશંસા કરી. આ ઉજવણી દ્વારા શાળા સમુદાયમાં ઔદાર્ય અને જ્ઞાનની ભાવના વધતી રહી છે.`;
   }
 
   if (key.includes("વિજ્ઞાન") || key.includes("science")) {
-    return `વિજ્ઞાન દિવસનું આયોજન વિદ્યાર્થીમાં કુતુહલ અને શોધખોળ માટે ઉત્તમવેદિકા છે. ${school || "અમારી શાળા"} માં ${date} થી શરૂ થયેલ ${eventName} દરમિયાન વૈજ્ઞાનિક પ્રદર્શનો, પ્રોજેક્ટ-શો અને પ્રયોગશાળાના કાર્યક્રમો આયોજિત કરવામાં આવ્યા. વિદ્યાર્થીઓએ પોતાના પ્રયોગ અને પ્રોજેક્ટ રજૂ કરીને જ્ઞાનના પ્રભાવ દર્શાવ્યો. ${name ? `${name}એ` : "એક વિદ્યાર્થીએ"} પણ પ્રવૃત્તિમાં ભાગ લઈને અનુભવ અને કુશળતા દર્શાવી. શિક્ષકમંડળે માર્ગદર્શન આપ્યું અને શાળાનું વૈજ્ઞાનિક મૂલ્ય વધ્યુ.`;
+    return `વિજ્ઞાન દિવસ વિદ્યાર્થીમાં કુતુહલ અને શોધખોળ પ્રોત્સાહિત કરે છે. ${school || "અમારી શાળા"} માં ${date} થી શરૂ થયેલ ${eventName} દરમ્યાન વૈજ્ઞાનિક પ્રદર્શન, પ્રોજેક્ટ-શો અને પ્રયોગશાળાના કાર્યક્રમો આયોજિત થયા. વિદ્યાર્થીઓએ પોતાના પ્રયોગ અને પ્રોજેક્ટ રજૂ કરી જ્ઞાનપ્રસિદ્ધિ બતાવી. ${name ? `${name}એ` : "એક વિદ્યાર્થીએ"} પણ પ્રવૃત્તિમાં ભાગ લઈને અનુભવ અને કુશળતા દર્શાવી. શિક્ષકમંડળે માર્ગદર્શન આપ્યું અને શાળાનું વૈજ્ઞાનિક મૂલ્ય વધ્યું.`;
   }
 
   if (key.includes("સ્વચ્છ") || key.includes("swachh") || key.includes("swachata")) {
-    return `સ્વચ્છતા દિવસ શાળામાં અને સમુદાયમાં સફાઈ અને પર્યાવરણની જાગૃતિ લાવવા માટે મહત્વપૂર્ણ છે. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} દરમિયાન વિદ્યાર્થીઓ અને શિક્ષકોએ મીલીને સફાઈ અભિયાન ચલાવ્યું અને પ્લાસ્ટિક ઘટાડવા પર કાર્યશાળા આયોજિત કરી. ${name ? `${name}એ` : "વિદ્યાર્થીઓએ"} ઉત્સાહથી ભાગ લઈને પ્રેરણા આપી. આવી પ્રવૃત્તિઓથી લાંબા ગાળાના પર્યાવરણ સંરક્ષણમાં મદદ મળે છે.`;
+    return `સ્વચ્છતા દિવસ શાળામાં અને સમુદાયમાં સફાઈ તથા પર્યાવરણ જાગૃતિ લાવવા માટે મહત્વપૂર્ણ છે. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} દરમિયાન વિદ્યાર્થીઓ અને શિક્ષકો દ્વારા મીલીને સફાઈ અભિયાન ચલાવવામાં આવ્યું અને પ્લાસ્ટિક ઘટાડવા પર કાર્યશાળા આયોજિત થઈ. ${name ? `${name}એ` : "વિદ્યાર્થીઓએ"} ઉત્સાહથી ભાગ લઈ પ્રેરણા આપી. આવી પ્રવૃત્તિઓથી પર્યાવરણ સંરક્ષણમાં મદદ મળે છે.`;
   }
 
   if (key.includes("guru") || key.includes("પંચમી") || key.includes("guru panchami") || key.includes("ગુરૂ")) {
-    return `ગુરુ પંચમી એ ગુરૂ-શિષ્ય સંબંધની ગહન પરંપરા and શ્રદ્ધાભરી ઉજવણી છે. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} ની ઉજવણીમાં શિક્ષકો અને ગુરુઓને સન્માન આપવામાં આવ્યું. વિદ્યાર્થીઓ દ્વારા કાવ્ય, ભાષણ અને ગીત દ્વારા ગુરુની મહત્તા વ્યક્ત કરવામાં આવી. ${name ? name + "એ" : "વિદ્યાર્થીએ"} પ્રભાવશાળી ભાગ લઇ આ પ્રેરણાદાયક પ્રસંગને સફળ બનાવવામાં મદદ કરી. શિક્ષકો અને પ્રિન્સિપાલે સહભાગીઓને અભિનંદન આપ્યું અને ભવિષ્યમાં વધુ such events આયોજન કરવાની કલ્પના વ્યક્ત કરી.`;
+    return `ગુરુ પંચમી ગુરુ-શિષ્ય સંબંધની પરંપરા ઉજવવાનું મહત્ત્વપૂર્ણ અવસર છે. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} ની ઉજવણીમાં શિક્ષકોને સન્માન આપવામાં આવ્યું. વિદ્યાર્થીઓ દ્વારા કાવ્ય, ભાષણ અને ગીત દ્વારા ગુરુની મહત્તા વ્યક્ત કરવામાં આવી. ${name ? `${name}એ` : "વિદ્યાર્થીએ"} પ્રભાવશાળી ભાગ લીધો અને આ પ્રસંગ સફળ બન્યો.`;
   }
 
   if (key.includes("ગણતંત્ર") || key.includes("republic") || key.includes("સ્વતંત્રતા") || key.includes("independence")) {
-    return `દેશભક્તિ અને એકતાનો પ્રદર્શન કરતા ${eventName} ની ઉજવણી ${school || "અમારી શાળા"} માં ${date} ના રોજ ઉજવાઈ. રાષ્ટ્રીય ધ્વજ ફહેરાવા, ભાષણો અને સાંસ્કૃતિક પ્રદર્શનોથી કાર્યક્રમ ભવ્ય બની ગયો. ${name ? `${name}એ` : "વિદ્યાર્થીએ"} ભાગ લીધો અને દેશપ્રેમનું સંદેશ આપ્યો.`;
+    return `દેશભક્તિ અને એકતાનો પ્રદર્શન કરતા ${eventName} ની ઉજવણી ${school || "અમારી શાળા"} માં ${date} ના રોજ યોજાઇ. રાષ્ટ્રીય ધ્વજ ફરાવા, ભાષણો અને સાંસ્કૃતિક પ્રદર્શનોથી કાર્યક્રમ ભવ્ય બન્યો. ${name ? `${name}એ` : "વિદ્યાર્થીએ"} ભાગ લઈને દેશપ્રેમની ભાવના વ્યક્ત કરી.`;
   }
 
   if (key.includes("sports") || key.includes("sports day") || key.includes("spors")) {
-    return `સ્પોર્ટ્સ ડે દરમ્યાન વિદ્યાર્થીઓની ફિટનેસ અને ટીમવર્કને આગળ લાવવા વિવિધ રમતગમત સ્પર્ધાઓ આયોજન કરવામાં આવ્યા. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} ઉત્સાહભર્યું રહ્યું. ${name ? `${name}એ` : "વિદ્યાર્થીએ"} પ્રદર્શન આપીને સન્માન જીત્યું અને ટીમ સ્પિરિટ બતાવ્યો.`;
+    return `સ્પોર્ટ્સ ડે દરમ્યાન વિવિધ રમતગમત સ્પર્ધાઓ યોજાઇ, જેના દ્વારા વિદ્યાર્થીઓની ફિટનેસ અને ટીમવર્ક પર ભાર મુકાયો. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} ઉત્સાહભર્યો રહ્યો. ${name ? `${name}એ` : "વિદ્યાર્થીએ"} ભાગ લઈને ટીમ સ્પિરિટ અને પ્રતિભાનું પ્રદર્શન કર્યું.`;
   }
 
   if (key.includes("annual") || key.includes("annual day") || key.includes("વર્ષિક")) {
-    return `વાર્ષિક દિવસે શાળાના વર્ષભરના સિદ્ધિઓનું સમાપન અને પ્રદર્શન થાય છે. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} ભવ્ય રીતે આયોજિત થયું અને વિદ્યાર્થીઓએ રંગભૂમિ, નૃત્ય અને સંગીત દ્વારા પોતાની પ્રતિભા બતાવી. ${name ? `${name}એ` : "વિદ્યાર્થીએ"} ખાસ યોગદાન આપ્યું.`;
+    return `વાર્ષિક દિવસે શાળાના વર્ષભરના સિદ્ધિઓનું સમાપન થાય છે. ${school || "આપણી શાળા"} માં ${date} ના રોજ ${eventName} ભવ્ય રીતે આયોજિત થયું અને વિદ્યાર્થીઓએ નૃત્ય, નાટક અને સંગીત દ્વારા પોતાની પ્રતિભા દર્શાવી. ${name ? `${name}એ` : "વિદ્યાર્થીએ"} ખાસ યોગદાન આપ્યું.`;
   }
 
-  // generic/adaptive fallback
+  // Generic adaptive fallback
   const speaker = name ? `${name}` : "વિદ્યાર્થીઓ અને ભાગ લેનારા";
   const schoolLabel = school || "અમારી શાળા";
   const dayLabel = days === 1 ? "દિવસ" : "દિવસો";
 
   const sentences: string[] = [];
-  sentences.push(`${schoolLabel} ખાતે ${date}થી શરૂ થયેલ ${eventName} ની ઉજવણી ${days} ${dayLabel} સુધી ઊજવણી અને ગોઠવણ સાથે યોજાઇ.`);
-  sentences.push(`આ કાર્યક્રમનો ઉદ્દેશ વિદ્યાર્થીઓમાં સક્રિય ભાગીદારી, શૈક્ષણિક પ્રેરણા અને સાંસ્કૃતિક જાગૃતિ લાવવાનો રહ્યો.`);
-  sentences.push(`${speaker}એ કાર્યક્રમમાં ઉત્સાહથી ભાગ લઈને કાર્યક્રમને સફળ બનાવવામાં સહયોગ આપ્યો.`);
-  sentences.push(`પ્રદર્શન, સ્પર્ધા અને વર્કશોપ દ્વારા વિદ્યાર્થીઓને વ્યવહારિક અનુભવ પ્રાપ્ત થયો અને તેમની પ્રતિભા તારવાઈ.`);
-  sentences.push(`શાળા પ્રિન્સિપાલ અને શિક્ષકમંડળે માર્ગદર્શન આપ્યું અને તમામનો આભાર વ્યક્ત કર્યો.`);
+  sentences.push(`${schoolLabel} ખાતે ${date}થી શરૂ થયેલ ${eventName} ની ઉજવણી ${days} ${dayLabel} સુધી ગોઠવણ અને ઉત્સાહ સાથે યોજાઇ.`);
+  sentences.push(`આ કાર્યક્રમનો ઉદ્દેશ વિદ્યાર્થીઓમાં સક્રિય ભાગીદારી, શૈક્ષણિક પ્રેરણા અને સાંસ્કૃતિક જાગૃતિ લાવવાનો હતો.`);
+  sentences.push(`${speaker}એ કાર્યક્રમમાં ઉત્સાહથી ભાગ લઈને તેને સફળ બનાવવામાં સહયોગ આપ્યો.`);
+  sentences.push(`પ્રદર્શન, વર્કશોપ અને સ્પર્ધાઓ દ્વારા વિદ્યાર્થીઓને વ્યવહારિક અનુભવ અને આદર મળ્યો.`);
+  sentences.push(`શાળા પ્રિન્સિપાલ અને શિક્ષકમંડળે માર્ગદર્શન આપ્યું અને તમામનો આભાર મનાવવામાં આવ્યો.`);
   sentences.push(`આ પ્રકારની પ્રવૃત્તિઓથી વિદ્યાર્થીઓમાં જવાબદારી, ટીમવર્ક અને કુશળતાનું વિકાસ થાય છે.`);
 
   let paragraph = sentences.join(" ");
   const wordCount = paragraph.trim().split(/\s+/).length;
   if (wordCount < 180) {
-    paragraph += " " + `આ અનુભવો અને પ્રસ્તુતિઓ દ્વારા ભવિષ્યમાં વધુ સ્તરે તાલીમ અને કાર્યક્રમ આયોજિત કરવાની પ્રેરણા મળી છે.`;
+    paragraph += " " + `આ અનુભવ અને પ્રસ્તુતિઓ દ્વારા ભવિષ્યમાં વધુ સ્તરે તાલીમ અને કાર્યક્રમ આયોજિત કરવાની પ્રેરણા મલેશે.`;
   }
   const finalWordCount = paragraph.trim().split(/\s+/).length;
   if (finalWordCount < 200) {
-    paragraph += " " + `આ અહેવાલે કાર્યક્રમને દસ્તાવેજિકૃત કરી શાળા પ્રબંધન અને ભાગ લેનારાઓ માટે આધારભૂત જાણકારી તરીકે કામ કરશે.`;
+    paragraph += " " + `આ અહેવાલ કાર્યક્રમને દસ્તાવેજિકૃત કરી શાળા પ્રબંધન અને ભાગ લેનારાઓ માટે આધારભૂત જાણકારી તરીકે કામ કરશે.`;
   }
 
   return paragraph;
 }
 
-export default function AhevalPage(): JSX.Element {
+export default function AhevalPage() {
   const [name, setName] = useState<string>("");
   const [school, setSchool] = useState<string>("");
   const [eventName, setEventName] = useState<string>("Sixandin");
@@ -96,7 +93,6 @@ export default function AhevalPage(): JSX.Element {
     reader.readAsDataURL(file);
   }
 
-  
   async function handleGenerateReport() {
     setGeneratedReport("");
     setIsGenerating(true);
@@ -104,7 +100,6 @@ export default function AhevalPage(): JSX.Element {
     const payload = { name, school, eventName, date, days, length: "medium" };
 
     if (!aiMode) {
-     
       const rpt = generateGujaratiReport({ name, school, eventName, date, days });
       setGeneratedReport(rpt);
       setIsGenerating(false);
@@ -122,7 +117,6 @@ export default function AhevalPage(): JSX.Element {
 
       if (!res.ok || !data?.report) {
         console.warn("AI API error, falling back to local generator:", data);
-       
         const rpt = generateGujaratiReport({ name, school, eventName, date, days });
         setGeneratedReport(rpt);
       } else {
@@ -139,7 +133,7 @@ export default function AhevalPage(): JSX.Element {
 
   const downloadPDF = async () => {
     if (!previewRef.current) {
-      alert("Previewmateriaal મળ્યું નથી.");
+      alert("Preview materialen મળી નથી.");
       return;
     }
     setIsGenerating(true);
@@ -154,7 +148,7 @@ export default function AhevalPage(): JSX.Element {
       document.body.appendChild(iframe);
 
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
-      if (!doc) throw new Error("Iframe document બનાવી શકાયું નહીં.");
+      if (!doc) throw new Error("Iframe document તૈયાર કરી શકાતો નથી.");
 
       const styles = `
         <style>
@@ -223,10 +217,11 @@ export default function AhevalPage(): JSX.Element {
 
       try {
         document.body.removeChild(iframe);
-      } catch (e) {
+      } catch {
         // ignore
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error("PDF generation error:", err);
       alert("PDF બનાવવામાં ભૂલ — Console તપાસો.");
     } finally {
@@ -236,10 +231,9 @@ export default function AhevalPage(): JSX.Element {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">અહેવાલ જનરેટર (Aheval)</h1>
+      <h1 className="text-2xl font-bold mb-4">અહેવाल જનરેટર (Aheval)</h1>
 
       <div className="grid md:grid-cols-2 gap-6">
-        
         <div className="border rounded p-4">
           <label className="block mb-2 font-medium">ઇવેન્ટ પસંદ કરો</label>
           <select
@@ -261,11 +255,11 @@ export default function AhevalPage(): JSX.Element {
           <div className="flex items-center gap-3 mb-3">
             <label className="flex items-center gap-2">
               <input type="checkbox" checked={aiMode} onChange={(e) => setAiMode(e.target.checked)} />
-              <span className="text-sm">AI થી અહેવાલ બનાવો (require server API)</span>
+              <span className="text-sm">AI થી અહેવાલ બનાવો (server API જરૂરી)</span>
             </label>
           </div>
 
-          <label className="block mb-2 font-medium">અહેવાલ માટેનું નામ (પ્રત્યુાગી)</label>
+          <label className="block mb-2 font-medium">અહેવાલ માટેનું નામ</label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -300,7 +294,10 @@ export default function AhevalPage(): JSX.Element {
 
           <label className="block mb-2 font-medium">ફોટો અપલોડ</label>
           <input type="file" accept="image/*" onChange={onPhotoChange} className="w-full mb-3" />
-          {photoDataUrl && <img src={photoDataUrl} alt="photo" className="w-32 h-40 object-cover border" />}
+          {photoDataUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={photoDataUrl} alt="photo" className="w-32 h-40 object-cover border" />
+          )}
 
           <div className="flex gap-3 mt-4">
             <button
@@ -320,7 +317,7 @@ export default function AhevalPage(): JSX.Element {
               }}
               className="px-4 py-2 border rounded"
             >
-              રీసેટ
+              રીસેટ
             </button>
           </div>
         </div>
@@ -341,9 +338,9 @@ export default function AhevalPage(): JSX.Element {
                 <h2 style={{ textAlign: "center", fontSize: 28, margin: 0 }}>{eventName}</h2>
                 <div style={{ textAlign: "center", marginTop: 6, fontSize: 16 }}>{school || "______"}</div>
 
-                {/* photo */}
                 <div style={{ position: "absolute", right: 24, top: 90, width: 120, height: 150, border: "3px solid #000", overflow: "hidden", background: "#fff" }}>
                   {photoDataUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={photoDataUrl} alt="photo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   ) : (
                     <div style={{ padding: 8, textAlign: "center", color: "#666" }}>ફોટો</div>

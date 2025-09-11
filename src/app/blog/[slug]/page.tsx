@@ -3,15 +3,13 @@ import { notFound } from "next/navigation";
 import { getPostSource } from "@/lib/posts";
 import MDXRenderer from "@/components/MDXRenderer";
 
-type Props = { params: { slug: string } };
-
-export default async function PostPage({ params }: Props) {
-  const { slug } = params;
+export default async function PostPage(props: any) {
+  const { slug } = (props.params || {}) as { slug: string };
 
   let post;
   try {
     post = await getPostSource(slug);
-  } catch (err) {
+  } catch (err: unknown) {
     console.error("Error loading post:", slug, err);
     return notFound();
   }
@@ -32,7 +30,6 @@ export default async function PostPage({ params }: Props) {
         {meta.date ? new Date(String(meta.date)).toDateString() : ""}
       </p>
 
-      {/* prose gives good typography; mdx-article is our custom class for emojis & markers */}
       <div className="prose prose-lg md:prose-xl mdx-article">
         <MDXRenderer html={html} />
       </div>
