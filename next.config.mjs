@@ -1,11 +1,11 @@
-/** @type {import('next').NextConfig} */
+/** next.config.mjs */
 const nextConfig = {
   eslint: {
-    // Ignore ESLint errors during builds (Vercel deploy)
+    // ignore ESLint errors during builds on Vercel
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Ignore TypeScript errors during builds (Vercel deploy)
+    // ignore TypeScript errors during builds on Vercel
     ignoreBuildErrors: true,
   },
 };
