@@ -1,26 +1,335 @@
+/* src/globals.css
+   Replaces the previous global file. Contains:
+   - your theme variables (light/dark)
+   - Tailwind entry points (keeps compatibility)
+   - base layer and global resets
+   - mdx article styling (headings, lists, blockquote, code, images)
+*/
+
+/* Tailwind entry — keep if your build expects @tailwind or @import.
+   If your project uses `@tailwind base; @tailwind components; @tailwind utilities;`
+   replace the @import line accordingly. */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* your custom theme tokens (kept as you provided) */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+/* Base layer and tiny reset using Tailwind tokens */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html, body, #__next {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    line-height: 1.6;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Small container helpers */
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
-body {
-  background: var(--background);
+/* --- MDX / Article styles --- */
+/* Main article wrapper — use this class around the rendered HTML */
+.mdx-article {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.8;
+  word-break: break-word;
+}
+
+/* Typography sizing for article content */
+.mdx-article h1 {
+  font-size: 2.25rem; /* 36px */
+  line-height: 1.1;
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.mdx-article h2 {
+  font-size: 1.5rem; /* 24px */
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.mdx-article h3 {
+  font-size: 1.125rem; /* 18px */
+  margin-top: 1rem;
+  margin-bottom: 0.45rem;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+.mdx-article p {
+  margin-bottom: 0.85rem;
+  color: #374151; /* gray-700 */
+  font-size: 1rem;
+}
+
+/* Slightly larger prose on larger screens */
+@media (min-width: 768px) {
+  .mdx-article { font-size: 1.05rem; }
+}
+
+/* Unordered lists — use emoji markers */
+.mdx-article ul {
+  margin-left: 1.25rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.mdx-article ul li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Default emoji arrow marker */
+.mdx-article ul li::before {
+  content: "👉";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(0.05rem);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Ordered lists */
+.mdx-article ol {
+  margin-left: 1.15rem;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+/* Blockquote style */
+.mdx-article blockquote {
+  border-left: 4px solid #3b82f6; /* blue-500 */
+  padding-left: 1rem;
+  margin-left: 0;
+  color: #374151;
+  font-style: italic;
+  background: rgba(59,130,246,0.03);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 6px;
+}
+
+/* Inline code and code blocks */
+.mdx-article code {
+  background: #f3f4f6;
+  padding: 0.12rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.95em;
+  color: #111827;
+}
+
+.mdx-article pre {
+  background: #0f172a; /* slate-900 */
+  color: #e6eef8;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
+/* Links inside article */
+.mdx-article a {
+  color: #1d4ed8; /* blue-700 */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Images */
+.mdx-article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+}
+
+/* Tables */
+.mdx-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.mdx-article th, .mdx-article td {
+  border: 1px solid rgba(15,23,42,0.08);
+  padding: 0.6rem;
+  text-align: left;
+}
+
+/* Small screen tweaks */
+@media (max-width: 640px) {
+  .mdx-article h1 { font-size: 1.6rem; }
+  .mdx-article h2 { font-size: 1.2rem; }
+  .mdx-article { padding-left: 0; padding-right: 0; }
+}
+
+/* Utility: full-width article container (use in page wrapper) */
+.article-container {
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5rem;
+}
+
+/* Add small subtle dividers for sections */
+.mdx-article hr {
+  border: none;
+  height: 1px;
+  background: rgba(15,23,42,0.06);
+  margin: 1.25rem 0;
+}
+
+/* Optional: allow per-list emoji classes */
+.mdx-article ul.emoji-star li::before { content: "⭐"; }
+.mdx-article ul.emoji-check li::before { content: "✅"; }
+
+/* final small helpers */
+.kbd {
+  display: inline-block;
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  background: #111827;
+  color: #fff;
+  font-size: 0.85em;
 }
