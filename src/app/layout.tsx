@@ -4,7 +4,7 @@ import type { Metadata, Viewport } from "next";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import { Noto_Sans, Noto_Sans_Gujarati } from "next/font/google";
-// import { AuthBootstrap } from "@/components/AuthBootstrap"; // uncomment if using anon auth
+import Analytics from "@/components/Analytics";
 
 // English/General font
 const notoSans = Noto_Sans({
@@ -54,7 +54,6 @@ export const metadata: Metadata = {
     description: "Blogs, study tools, and online exams for students.",
     creator: "@educationaim",
   },
-  // Update icons to match files placed in the public/ folder
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -63,10 +62,7 @@ export const metadata: Metadata = {
       { url: "/favicon-512.png", sizes: "512x512", type: "image/png" },
       { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    // Apple touch icon
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
-    // A site manifest entry is supported by Next metadata icons object in some versions,
-    // but to be safe we will also add a manifest file into public/ (see instructions below).
   },
   alternates: {
     canonical: "https://educationaim.in",
@@ -91,8 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${notoSans.variable} ${notoGujarati.variable}`}
     >
       <head>
-        {/* Extra link tags that metadata may not automatically add in all environments.
-            Having them here ensures broad browser support. */}
+        {/* Extra link tags that metadata may not automatically add in all environments */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
@@ -100,10 +95,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+
+        {/* Analytics + Search Console verification (component) */}
+        <Analytics />
       </head>
 
       <body className="min-h-screen bg-gray-50 text-gray-900 font-[var(--font-noto)] antialiased">
-        {/* Optional: <AuthBootstrap /> */}
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 rounded bg-black/90 px-3 py-2 text-white"
