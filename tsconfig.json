@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2018",
     "lib": [
       "dom",
       "dom.iterable",
@@ -38,8 +38,10 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "tailwind.config.js"  ],
+    ".next/types/**/*.ts",
+    "tailwind.config.js",
+    "next.config.mjs"
+  ],
   "exclude": [
     "node_modules"
   ]

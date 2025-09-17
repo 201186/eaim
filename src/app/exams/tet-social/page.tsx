@@ -7,7 +7,8 @@ export default function TETSocialLanding() {
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-2">TET – Samajik Vigyan (Social Science)</h1>
       <p className="text-gray-600 mb-6">
-        નીચેના 1 થી 8 સેટમાંથી કોઈપણ પસંદ કરો. દરેક સેટમાં 40 પ્રશ્નો હશે, દરેક પ્રયત્ને નવા ક્રમે આવશે.
+        દરેક ટેસ્ટ સેટ માં જુદા જુદા પ્રશ્નો આવશે .
+      સામાજિક વિજ્ઞાન ના અભ્યાસક્રમ મુજબ  દરેક પ્રયત્ન માં જુદા જુદા પ્રશ્ન આવશે .
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {sets.map((n) => (

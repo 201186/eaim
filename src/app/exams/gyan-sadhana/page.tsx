@@ -7,7 +7,8 @@ export default function GyanSadhanaLanding() {
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-2">Gyan Sadhana – Practice Sets</h1>
       <p className="text-gray-600 mb-6">
-        નીચેના 1 થી 8 સેટમાંથી કોઈપણ પસંદ કરીને 40 પ્રશ્નોની ટેસ્ટ આપો. દરેક પ્રયાસે નવા ક્રમે પ્રશ્નો આવશે.
+        દરેક ટેસ્ટ સેટ માં જુદા જુદા પ્રશ્નો આવશે .
+      જ્ઞાનસાધના ના અભ્યાસક્રમ મુજબ  દરેક પ્રયત્ન માં જુદા જુદા પ્રશ્ન આવશે .
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

@@ -104,7 +104,7 @@ export default function TETBhashaSetPage() {
       <div className="max-w-4xl mx-auto py-8">
         <h1 className="text-3xl font-bold mb-2">TET – Bhasha (Set {setNo})</h1>
         <p className="text-gray-700 mb-6">
-          આ સેટમાં {QUESTION_COUNT} પ્રશ્નો હશે. દરેક પ્રયત્ને પ્રશ્નો અને વિકલ્પો નવા ક્રમે આવશે.
+         આ ટેસ્ટ સેટમાં કુલ  {QUESTION_COUNT} પ્રશ્નો છે. દરેક પ્રયત્ને Questions અને Options ઓટોમેટીક આવે છે. નીચેના બટનથી ટેસ્ટ શરૂ કરો.
         </p>
         <button
           onClick={startNewAttempt}
