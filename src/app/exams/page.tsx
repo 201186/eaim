@@ -30,6 +30,13 @@ const exams = [
     color: "bg-green-100 hover:bg-green-200 text-green-800" 
   },
   { 
+    id: "tet-ganit-vigyan", 
+    title: "TET – Ganit Vigyan", 
+    desc: "Maths & Science practice sets", 
+    questions: 40, 
+    color: "bg-emerald-100 hover:bg-emerald-200 text-emerald-800" 
+  },
+  { 
     id: "tet-bhasha", 
     title: "TET – Bhasha", 
     desc: "Language practice sets", 
